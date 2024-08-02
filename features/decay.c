@@ -1,4 +1,5 @@
 #include "../pid.h"
+#include "is_first.h"
 
 float pid_update_with_integral_decay(struct Pid *pid, float error, float dt) {
   float differential = (error - pid->previous) / dt;
@@ -15,12 +16,7 @@ float pid_update_with_integral_decay(struct Pid *pid, float error, float dt) {
   return proportional + integral + derivative;
 }
 
-float pid_update_with_integral_decay_is_first(struct Pid *pid, float error,
-                                              float dt) {
-  pid->previous = error;
-  pid->update = pid_update_with_integral_decay;
-  return pid_update_with_integral_decay(pid, error, dt);
-}
+PID_UPDATE_GENERATE_IS_FIRST(integral_decay)
 
 struct Pid pid_new_with_integral_decay(float kp, float ki, float kd,
                                        float integral_decay_factor) {
