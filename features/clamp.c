@@ -12,11 +12,7 @@ float pid_update_with_integral_clamp(struct Pid *pid, float error, float dt) {
   pid->integral = pid->integral > clamp ? clamp : pid->integral;
   pid->integral = pid->integral < -clamp ? -clamp : pid->integral;
 
-  float proportional = pid->kp * error;
-  float integral = pid->ki * pid->integral;
-  float derivative = pid->kd * differential;
-
-  return proportional + integral + derivative;
+  return pid_calculate(pid, error, pid->integral, differential);
 }
 
 PID_UPDATE_GENERATE_IS_FIRST(integral_clamp)

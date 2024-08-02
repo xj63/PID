@@ -10,11 +10,7 @@ float pid_update_with_integral_separation(struct Pid *pid, float error,
   if (error < pid->option.integral_separation_error_threshold)
     pid->integral += error * dt;
 
-  float proportional = pid->kp * error;
-  float integral = pid->ki * pid->integral;
-  float derivative = pid->kd * differential;
-
-  return proportional + integral + derivative;
+  return pid_calculate(pid, error, pid->integral, differential);
 }
 
 PID_UPDATE_GENERATE_IS_FIRST(integral_separation)

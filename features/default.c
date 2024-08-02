@@ -7,11 +7,7 @@ float pid_update_with_default(struct Pid *pid, float error, float dt) {
   pid->previous = error;
   pid->integral += error * dt;
 
-  float proportional = pid->kp * error;
-  float integral = pid->ki * pid->integral;
-  float derivative = pid->kd * differential;
-
-  return proportional + integral + derivative;
+  return pid_calculate(pid, error, pid->integral, differential);
 }
 
 PID_UPDATE_GENERATE_IS_FIRST(default)
