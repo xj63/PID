@@ -13,3 +13,7 @@ A feature-rich PID controller implementation in C.
 - [x] integral decay （积分衰减）
 - [x] integral clamp （积分限幅）
 - [x] integral separation （积分分离）
+
+## Contributing
+
+欢迎贡献以添加新功能并改进此 PID 控制器的实现！

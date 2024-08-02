@@ -12,3 +12,7 @@ A feature-rich PID controller implementation in C.
 - [x] integral decay
 - [x] integral clamp
 - [x] integral separation
+
+## Contributing
+
+Welcome contributions to add new features and improve this PID controller implementation!
