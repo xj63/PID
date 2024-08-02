@@ -4,7 +4,6 @@
 
 <h1 align="center">PID</h1>
 
-A feature-rich PID controller implementation in C.
 使用C语言实现的功能丰富的PID控制器。
 
 ## Features
