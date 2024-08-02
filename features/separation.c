@@ -1,13 +1,15 @@
 #include "../pid.h"
 #include "is_first.h"
 
+#define ABS(x) ((x) > 0 ? (x) : -(x))
+
 float pid_update_with_integral_separation(struct Pid *pid, float error,
                                           float dt) {
   float differential = (error - pid->previous) / dt;
 
   pid->previous = error;
   // integral separation
-  if (error < pid->option.integral_separation_error_threshold)
+  if (ABS(error) <= pid->option.integral_separation_error_threshold)
     pid->integral += error * dt;
 
   return pid_calculate(pid, error, pid->integral, differential);
