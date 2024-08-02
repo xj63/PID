@@ -5,6 +5,7 @@ float pid_update_with_integral_separation(struct Pid *pid, float error,
   float differential = (error - pid->previous) / dt;
 
   pid->previous = error;
+  // integral separation
   if (error < pid->option.integral_separation_error_threshold)
     pid->integral += error * dt;
 
