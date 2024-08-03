@@ -1,3 +1,4 @@
+#include "push-box.h"
 #include "../utils/num-limit-macro.h"
 
 const float BOX_MASS = 1.0; // kg
@@ -24,14 +25,7 @@ const float BOX_AREA = 0.1;      // m^2
   (-SIGN(v) * (0.5 * AIR_DRAG_COEFFICIENT * AIR_DENSITY * BOX_AREA * v * v))
 
 /// Simulate push the box in the direction of the force.
-///
-///             ──► v
-///            ┌─────┐
-///  ──► force │ BOX │ ◄── air resistance
-/// ───────────┴─────┴───────────────────► x
-///          ◄── friction
-///
-/// return box speed_increase.
+/// Right is the positive direction.
 float push_box(float *speed_addr, float force, float dt) {
   const float speed = *speed_addr;
 
@@ -59,18 +53,4 @@ float push_box(float *speed_addr, float force, float dt) {
   float delta = acc * dt;
   *speed_addr = speed + delta;
   return delta;
-}
-
-#include "stdio.h"
-int main(int argc, char *argv[]) {
-  float force = 100;
-  float dt = 0.01;
-  printf("force=%f, dt=%f\n", force, dt);
-
-  unsigned times = 1000000;
-  float speed = 0.0;
-  for (unsigned i = 0; i < times; i++) {
-    push_box(&speed, force, dt);
-    printf("speed=%f\n", speed);
-  }
 }
