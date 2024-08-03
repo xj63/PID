@@ -1,5 +1,5 @@
-#ifndef __IS_FIRST_H__
-#define __IS_FIRST_H__
+#ifndef __GENERATE_FIRST_UPDATE_H__
+#define __GENERATE_FIRST_UPDATE_H__
 
 #define PID_UPDATE_GENERATE_IS_FIRST(feature)                                  \
   float pid_update_with_##feature##_is_first(struct Pid *pid, float error,     \
@@ -9,4 +9,4 @@
     return pid_update_with_##feature(pid, error, dt);                          \
   }
 
-#endif // !__IS_FIRST_H__
+#endif // !__GENERATE_FIRST_UPDATE_H__

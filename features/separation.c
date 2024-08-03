@@ -1,5 +1,5 @@
 #include "../pid.h"
-#include "is_first.h"
+#include "utils/generate-first-update.h"
 
 #define ABS(x) ((x) > 0 ? (x) : -(x))
 
