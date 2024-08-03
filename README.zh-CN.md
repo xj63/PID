@@ -12,6 +12,7 @@
 - [x] integral decay （积分衰减）
 - [x] integral clamp （积分限幅）
 - [x] integral separation （积分分离）
+- [x] integral sliding window （积分滑动窗口，积分有限时间）
 
 ## Contributing
 
