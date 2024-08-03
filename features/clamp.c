@@ -1,5 +1,6 @@
 #include "../pid.h"
 #include "utils/generate-first-update.h"
+#include "utils/num-limit-macro.h"
 
 float pid_update_with_integral_clamp(struct Pid *pid, float error, float dt) {
   float differential = (error - pid->previous) / dt;
@@ -9,8 +10,7 @@ float pid_update_with_integral_clamp(struct Pid *pid, float error, float dt) {
 
   // clamp integral
   float clamp = pid->option.integral_clamp_bound;
-  pid->integral = pid->integral > clamp ? clamp : pid->integral;
-  pid->integral = pid->integral < -clamp ? -clamp : pid->integral;
+  pid->integral = CLAMP(pid->integral, clamp);
 
   return pid_weighted_sum(pid, error, pid->integral, differential);
 }

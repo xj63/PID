@@ -1,7 +1,6 @@
 #include "../pid.h"
 #include "utils/generate-first-update.h"
-
-#define ABS(x) ((x) > 0 ? (x) : -(x))
+#include "utils/num-limit-macro.h"
 
 float pid_update_with_integral_separation(struct Pid *pid, float error,
                                           float dt) {
