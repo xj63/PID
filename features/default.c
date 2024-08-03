@@ -7,7 +7,7 @@ float pid_update_with_default(struct Pid *pid, float error, float dt) {
   pid->previous = error;
   pid->integral += error * dt;
 
-  return pid_calculate(pid, error, pid->integral, differential);
+  return pid_weighted_sum(pid, error, pid->integral, differential);
 }
 
 PID_UPDATE_GENERATE_IS_FIRST(default)

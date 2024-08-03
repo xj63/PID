@@ -9,7 +9,7 @@ float pid_update_with_integral_decay(struct Pid *pid, float error, float dt) {
   pid->integral *= pid->option.integral_decay_factor;
   pid->integral += error * dt;
 
-  return pid_calculate(pid, error, pid->integral, differential);
+  return pid_weighted_sum(pid, error, pid->integral, differential);
 }
 
 PID_UPDATE_GENERATE_IS_FIRST(integral_decay)
