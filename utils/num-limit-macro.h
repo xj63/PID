@@ -37,6 +37,20 @@
 /// ```
 #define SIGN(x) ((x) == 0 ? 0 : ((x) > 0 ? 1 : -1))
 
+/// Square function
+///
+/// Returns x * x
+///
+/// # Example
+///
+/// ```c
+/// int x = -3;
+/// assert(SQUARE(x) == 9);
+/// assert(SQUARE(3.1) == 9.61);
+/// assert(SQUARE(0) == 0);
+/// ```
+#define SQUARE(x) ((x) * (x))
+
 /// Computes the maximum value of `x` and `y`.
 ///
 /// Equivalent expression `x > y ? x : y`.

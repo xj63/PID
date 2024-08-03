@@ -22,7 +22,7 @@ const float BOX_AREA = 0.1;      // m^2
 
 /// F_air_resistance = sign(v) * 1/2 * C * rho * S * v^2
 #define AIR_RESISTANCE_FORMULA(v)                                              \
-  (-SIGN(v) * (0.5 * AIR_DRAG_COEFFICIENT * AIR_DENSITY * BOX_AREA * v * v))
+  (-SIGN(v) * (0.5 * AIR_DRAG_COEFFICIENT * AIR_DENSITY * BOX_AREA * SQUARE(v)))
 
 /// Simulate push the box in the direction of the force.
 /// Right is the positive direction.
