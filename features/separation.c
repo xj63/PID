@@ -1,8 +1,8 @@
 #define PID_FEATURE_INTEGRAL_SEPARATION
 
 #include "../pid.h"
-#include "utils/generate-first-update.h"
-#include "utils/num-limit-macro.h"
+#include "../utils/generate-first-update.h"
+#include "../utils/num-limit-macro.h"
 
 float pid_update_with_integral_separation(struct Pid *pid, float error,
                                           float dt) {

@@ -1,7 +1,7 @@
 #define PID_FEATURE_INTEGRAL_SLIDING_WINDOW
 
 #include "../pid.h"
-#include "utils/generate-first-update.h"
+#include "../utils/generate-first-update.h"
 
 inline unsigned sliding_window_index(unsigned offset) {
   return offset % INTEGRAL_SLIDING_WINDOW_SIZE;
