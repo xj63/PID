@@ -28,7 +28,7 @@ const float AIR_RESISTANCE_SCALE =
 
 /// Simulate push the box in the direction of the force.
 /// Right is the positive direction.
-float push_box(float *speed_addr, float force, float dt) {
+float push_box(float *speed_addr, float force, float duration) {
   const float speed = *speed_addr;
 
   // The thrust is less than the static friction.
@@ -40,29 +40,24 @@ float push_box(float *speed_addr, float force, float dt) {
   // Sliding friction is opposite to the direction of motion.
   float kf_force = -SIGN(speed) * KINETIC_FRICTION_FORCE;
 
-  // m * dv/dt == F - f - kv^2
-  // ∫ m/(F-f-kv^2) dv == ∫ dt
-
-  // const_force = F - f
-  float const_force = force - kf_force;
-
-  if (const_force >= 0) {
-    float A = const_force;
-    // ∫ m/(A-kv^2) dv == m/A * ∫ 1/(1-kv^2/A) dv
-    // v^2 == (A/k) * sin(theta)
-    // m/A * arcsin(v/sqrt(A/k)) / sqrt(A/k) == t+C
-  } else {
-    float B = const_force;
-    // ∫ -m/B * arsinh(v/sqrt(B/k))/sqrt(B/k) == t+C
-  }
-
   // Air resistance is proportional to the square of the speed
   float air_resistance = AIR_RESISTANCE_FORMULA(speed);
 
   // Total force
   float acc = (force + kf_force + air_resistance) / BOX_MASS;
 
+  float dt = 1e-3;
   float delta = acc * dt;
+
+  if (duration < 1e-6) {
+    return delta;
+  } else if (duration < 1e-3) {
+    dt = duration;
+    delta = acc * dt;
+  } else {
+    delta += push_box(speed_addr, force, duration - dt);
+  }
+
   *speed_addr = speed + delta;
   return delta;
 }

@@ -35,6 +35,6 @@
 ///   }
 /// }
 /// ```
-float push_box(float *speed_addr, float force, float dt);
+float push_box(float *speed_addr, float force, float duration);
 
 #endif // !__PUSH_BOX_H__
