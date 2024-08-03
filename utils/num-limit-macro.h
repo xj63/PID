@@ -19,6 +19,24 @@
 /// ```
 #define ABS(x) ((x) >= 0 ? (x) : -(x))
 
+/// Signum function
+///
+/// Returns `+1` if `x` is positive,
+///     and `-1` if `x` is negative,
+///     and `0`  if `x` is zero.
+///
+/// Equivalent expression `x == 0 ? 0 : (x > 0 ? 1 : -1)`.
+///
+/// # Example
+///
+/// ```c
+/// int x = -3;
+/// assert(SIGN(x) == -1);
+/// assert(SIGN(3.14) == 1);
+/// assert(SIGN(0) == 0);
+/// ```
+#define SIGN(x) ((x) == 0 ? 0 : ((x) > 0 ? 1 : -1))
+
 /// Computes the maximum value of `x` and `y`.
 ///
 /// Equivalent expression `x > y ? x : y`.
