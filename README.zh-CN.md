@@ -17,3 +17,13 @@
 ## Contributing
 
 欢迎贡献以添加新功能并改进此 PID 控制器的实现！
+
+## Star History
+
+<a href="https://star-history.com/#xj63/PID&Date">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=xj63/PID&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=xj63/PID&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=xj63/PID&type=Date" />
+ </picture>
+</a>
