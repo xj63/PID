@@ -1,3 +1,5 @@
+#define PID_FEATURE_INTEGRAL_DECAY
+
 #include "../pid.h"
 #include "utils/generate-first-update.h"
 

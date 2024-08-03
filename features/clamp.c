@@ -1,3 +1,5 @@
+#define PID_FEATURE_INTEGRAL_CLAMP
+
 #include "../pid.h"
 #include "utils/generate-first-update.h"
 #include "utils/num-limit-macro.h"

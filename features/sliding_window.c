@@ -1,3 +1,5 @@
+#define PID_FEATURE_INTEGRAL_SLIDING_WINDOW
+
 #include "../pid.h"
 #include "utils/generate-first-update.h"
 
