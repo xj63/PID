@@ -4,8 +4,10 @@
 float pid_update_with_default(struct Pid *pid, float error, float dt) {
   float differential = (error - pid->previous) / dt;
 
+  float average = (error + pid->previous) / 2.0;
+  pid->integral += average * dt;
+
   pid->previous = error;
-  pid->integral += error * dt;
 
   return pid_weighted_sum(pid, error, pid->integral, differential);
 }

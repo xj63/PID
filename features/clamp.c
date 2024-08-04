@@ -7,12 +7,14 @@
 float pid_update_with_integral_clamp(struct Pid *pid, float error, float dt) {
   float differential = (error - pid->previous) / dt;
 
-  pid->previous = error;
-  pid->integral += error * dt;
+  float average = (error + pid->previous) / 2.0;
+  pid->integral += average * dt;
 
   // clamp integral
   float clamp = pid->option.integral_clamp_bound;
   pid->integral = CLAMP(pid->integral, clamp);
+
+  pid->previous = error;
 
   return pid_weighted_sum(pid, error, pid->integral, differential);
 }

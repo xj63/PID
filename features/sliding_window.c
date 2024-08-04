@@ -48,9 +48,11 @@ float pid_update_with_integral_sliding_window(struct Pid *pid, float error,
                                               float dt) {
   float differential = (error - pid->previous) / dt;
 
-  pid->previous = error;
+  float average = (error + pid->previous) / 2.0;
   pid->integral += integral_sliding_window_forward(
-      &pid->option.integral_sliding_window, error, dt);
+      &pid->option.integral_sliding_window, average, dt);
+
+  pid->previous = error;
 
   return pid_weighted_sum(pid, error, pid->integral, differential);
 }
