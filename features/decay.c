@@ -6,10 +6,12 @@
 float pid_update_with_integral_decay(struct Pid *pid, float error, float dt) {
   float differential = (error - pid->previous) / dt;
 
-  pid->previous = error;
+  float average = (error + pid->previous) / 2.0;
   // integral decay
   pid->integral *= pid->option.integral_decay_factor;
-  pid->integral += error * dt;
+  pid->integral += average * dt;
+
+  pid->previous = error;
 
   return pid_weighted_sum(pid, error, pid->integral, differential);
 }

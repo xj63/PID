@@ -8,10 +8,12 @@ float pid_update_with_integral_separation(struct Pid *pid, float error,
                                           float dt) {
   float differential = (error - pid->previous) / dt;
 
-  pid->previous = error;
   // integral separation
-  if (ABS(error) <= pid->option.integral_separation_error_threshold)
-    pid->integral += error * dt;
+  float average = (error + pid->previous) / 2.0;
+  if (ABS(average) <= pid->option.integral_separation_error_threshold)
+    pid->integral += average * dt;
+
+  pid->previous = error;
 
   return pid_weighted_sum(pid, error, pid->integral, differential);
 }
