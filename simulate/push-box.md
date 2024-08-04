@@ -6,8 +6,8 @@ Simulates pushing a box with an initial speed using a force F for a time dt.
 
 - Right is the positive direction. `->`
 - Consider static friction. $f_s \leq \mu_s mg \quad \text{if} \; v = 0$
-- Consider sliding friction. $f_k = -\operatorname{sgn}v \cdot \mu_k mg$
-- Consider air resistance. $f_d = -\operatorname{sgn}v \cdot \frac{1}{2} \rho C_d A v^2$
+- Consider sliding friction. $f_k = -\text{sgn}(v) \cdot \mu_k mg$
+- Consider air resistance. $f_d = -\text{sgn}(v) \cdot \frac{1}{2} \rho C_d A v^2$
 
 ## Problem Analysis
 
@@ -65,13 +65,13 @@ $$
 3. Unified form
 
 $$
-- \frac{m}{k} \cdot \int \frac{1}{v^2 - \sqrt{\frac{A}{k}}^2} dv = \int dt
+-\frac{m}{k} \cdot \int \frac{1}{v^2 - \sqrt{\frac{A}{k}}^2} dv = \int dt
 $$
 
 4. Substitute into the formula
 
 $$
-- \frac{m}{k} \cdot \left[ \frac{1}{2 \sqrt{\frac{A}{k}}} \cdot \ln{\left|\frac{v - \sqrt{\frac{A}{k}}}{v + \sqrt{\frac{A}{k}}}\right|} \right] = t + C
+-\frac{m}{k} \cdot \left[ \frac{1}{2 \sqrt{\frac{A}{k}}} \cdot \ln{\left|\frac{v - \sqrt{\frac{A}{k}}}{v + \sqrt{\frac{A}{k}}}\right|} \right] = t + C
 $$
 
 5. $v(0) = 0$
@@ -141,7 +141,7 @@ $$
 Refer to [ ### Speed 0 and thrust greater than the static friction ]
 
 $$
-- \frac{m}{k} \cdot \left[ \frac{1}{2 \sqrt{\frac{A}{k}}} \cdot \ln{\left|\frac{v - \sqrt{\frac{A}{k}}}{v + \sqrt{\frac{A}{k}}}\right|} \right] = t + C_1
+-\frac{m}{k} \cdot \left[ \frac{1}{2 \sqrt{\frac{A}{k}}} \cdot \ln{\left|\frac{v - \sqrt{\frac{A}{k}}}{v + \sqrt{\frac{A}{k}}}\right|} \right] = t + C_1
 $$
 
 $$
