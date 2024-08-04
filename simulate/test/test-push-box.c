@@ -28,4 +28,6 @@ int main() {
 
     printf("%.3f\n", speed);
   }
+  push_box(&speed, 0.0, 3.5);
+  printf("%.3f\n", speed);
 }
