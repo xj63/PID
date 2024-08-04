@@ -76,10 +76,11 @@ float push_box(float *speed_addr, float force, float duration) {
     float alpha = sqrtf(A / k);
     float V = alpha;
     float t0 = duration;
-    float C2 = ABS(v0 - alpha) / (v0 + alpha);
+    float vs = ABS(v0);
+    float C2 = ABS(vs - alpha) / (vs + alpha);
     float z0 = C2 * expf(-2 * (k / m) * alpha * t0);
     float v1;
-    if (v0 > V)
+    if (vs > V)
       v1 = alpha * (1 + z0) / (1 - z0);
     else
       v1 = alpha * (1 - z0) / (1 + z0);
@@ -93,7 +94,8 @@ float push_box(float *speed_addr, float force, float duration) {
   // direction(but thrust is less than sliding friction).
   float B = F * v0 >= 0.0 ? KINETIC_FRICTION_FORCE - ABS(F)
                           : KINETIC_FRICTION_FORCE + ABS(F);
-  float t0 = (m / sqrtf(B * k)) * atanf(sqrtf(k / B) * v0);
+  float vs = ABS(v0);
+  float t0 = (m / sqrtf(B * k)) * atanf(sqrtf(k / B) * vs);
   if (t0 >= duration) {
     float t1 = duration;
     float v1 = sqrtf(B / k) * tanf((sqrtf(B * k) / m) * (-t1 + t0));

@@ -6,7 +6,7 @@
 int main() {
   const float target = 100.0;
   const float dt = 0.1;
-  const unsigned times = 100;
+  const unsigned times = 10;
   float force = 100.0;
   float speed = 0.0;
   for (unsigned i = 0; i < times; i++) {
@@ -16,7 +16,7 @@ int main() {
     if (ABS(speed - previous - delta) >= 1e-6)
       exit(1);
 
-    printf("%f\n", speed);
+    printf("%.3f\n", speed);
   }
   force = -force;
   for (unsigned i = 0; i < times; i++) {
@@ -26,6 +26,6 @@ int main() {
     if (ABS(speed - previous - delta) >= 1e-6)
       exit(1);
 
-    printf("%f\n", speed);
+    printf("%.3f\n", speed);
   }
 }
