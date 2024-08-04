@@ -213,7 +213,7 @@ $$
 3. Constant separation
 
 $$
-\int \frac{m}{B + kv^2} dv = \frac{m}{k} \int \frac{1}{\frac{D}{k} + v^2} dv = \frac{m}{\sqrt{Dk}} \int \frac{\sqrt{\frac{k}{D}}}{1 + (\frac{v\sqrt{k}}{\sqrt{D}})^2} dv = - \int dt
+\int \frac{m}{B + kv^2} dv = \frac{m}{k} \int \frac{1}{\frac{B}{k} + v^2} dv = \frac{m}{\sqrt{Bk}} \int \frac{\sqrt{\frac{k}{B}}}{1 + (\frac{v\sqrt{k}}{\sqrt{B}})^2} dv = - \int dt
 $$
 
 4. The left-hand side integral
@@ -241,11 +241,11 @@ $$
 $$
 
 $$
-\frac{m}{\sqrt{B k}} \arctan{\left( \sqrt{\frac{k}{D}} \cdot v \right)} = -t + C_1
+\frac{m}{\sqrt{B k}} \arctan{\left( \sqrt{\frac{k}{B}} \cdot v \right)} = -t + C_1
 $$
 
 $$
-v(t) = \sqrt{\frac{B}{k}} \cdot \tan{\left(\sqrt{\frac{Dk}{m^2}}(-t + C_1)\right)}
+v(t) = \sqrt{\frac{B}{k}} \cdot \tan{\left(\sqrt{\frac{Bk}{m^2}}(-t + C_1)\right)}
 $$
 
 6. $v(0) = v_0$
@@ -253,13 +253,13 @@ $$
 $v_0$ is the absolute value of the initial velocity
 
 $$
-v(0) = \sqrt{\frac{B}{k}} \tan{\left(\sqrt{\frac{Dk}{m^2}} \cdot C_1\right)} = v_0
+v(0) = \sqrt{\frac{B}{k}} \tan{\left(\sqrt{\frac{Bk}{m^2}} \cdot C_1\right)} = v_0
 $$
 
 7. $v(t_0) = 0$
 
 $$
-v(t_0) = \sqrt{\frac{B}{k}} \cdot \tan{\left(\sqrt{\frac{Dk}{m^2}}(-t_0 + C_1)\right)} = 0
+v(t_0) = \sqrt{\frac{B}{k}} \cdot \tan{\left(\sqrt{\frac{Bk}{m^2}}(-t_0 + C_1)\right)} = 0
 $$
 
 $$
@@ -267,14 +267,14 @@ $$
 $$
 
 $$
-t_0 = C_1 = \frac{m}{\sqrt{Bk}} \arctan{\left(\sqrt{\frac{k}{D}} \cdot v_0 \right)}
+t_0 = C_1 = \frac{m}{\sqrt{Bk}} \arctan{\left(\sqrt{\frac{k}{B}} \cdot v_0 \right)}
 $$
 
 8. Compare duration with $t_0$ to determine whether the first speed 0 point has been passed.
 - If not passed, substitute duration.
 
 $$
-v(t_1) = \sqrt{\frac{B}{k}} \tan{\left(\sqrt{\frac{Dk}{m^2}}(-t_1 + t_0)\right)}
+v(t_1) = \sqrt{\frac{B}{k}} \tan{\left(\sqrt{\frac{Bk}{m^2}}(-t_1 + t_0)\right)}
 $$
 
 The direction of the velocity is consistent with the initial direction.
