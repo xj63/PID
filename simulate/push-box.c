@@ -20,7 +20,7 @@ const float AIR_DRAG_COEFFICIENT = 0.47;
 const float AIR_DENSITY = 1.225; // kg/m^3
 const float BOX_AREA = 0.1;      // m^2
 
-/// F_air_resistance = sign(v) * 1/2 * C * rho * S * v^2
+/// F_air_resistance = -sign(v) * 1/2 * C * rho * S * v^2
 const float AIR_RESISTANCE_SCALE =
     0.5 * AIR_DRAG_COEFFICIENT * AIR_DENSITY * BOX_AREA; // 1/2 * C * rho * S
 #define AIR_RESISTANCE_FORMULA(v)                                              \
