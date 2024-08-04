@@ -1,5 +1,6 @@
 #include "push-box.h"
 #include "../utils/num-limit-macro.h"
+#include <math.h>
 
 const float BOX_MASS = 1.0; // kg
 
@@ -29,35 +30,70 @@ const float AIR_RESISTANCE_SCALE =
 /// Simulate push the box in the direction of the force.
 /// Right is the positive direction.
 float push_box(float *speed_addr, float force, float duration) {
-  const float speed = *speed_addr;
+  const float k = AIR_RESISTANCE_SCALE;
+  const float m = BOX_MASS;
+  const float v0 = *speed_addr;
+  const float F = force;
 
-  // The thrust is less than the static friction.
-  if (ABS(speed) < 1e-6 && ABS(force) < STATIC_FRICTION_FORCE) {
-    *speed_addr = 0.0;
-    return 0.0;
+  // Initial speed is zero.
+  if (ABS(v0) < 1e-9) {
+    // The thrust is less than the static friction.
+    // - When the speed is 0, if the thrust is less than the static friction,
+    //   the force on the box will remain stationary.
+    //
+    // Refer to the analysis of
+    // [push-box.md###Speed_0_and_thrust_less_than_the_static_friction]
+    if (ABS(F) < STATIC_FRICTION_FORCE) {
+      *speed_addr = 0.0;
+      return 0.0;
+    }
+
+    // The thrust is greater than the static friction.
+    // - When the initial velocity is 0 and the thrust is greater than the
+    //   static friction, the box will move in the direction of the thrust
+    //   because the sliding friction is less than the static friction and
+    //   less than the thrust. The direction of the sliding friction is
+    //   opposite to the thrust.
+    //
+    // Refer to the analysis of
+    // [push-box.md###Speed_0_and_thrust_greater_than_the_static_friction]
+    float A = ABS(F) - KINETIC_FRICTION_FORCE;
+    float t = duration;
+    float v1 = sqrtf(A / k) * tanf((sqrtf(A * k) / m) * t);
+    v1 = SIGN(F) * v1;
+    *speed_addr = v1;
+    return v1 - v0;
   }
 
-  // Sliding friction is opposite to the direction of motion.
-  float kf_force = -SIGN(speed) * KINETIC_FRICTION_FORCE;
-
-  // Air resistance is proportional to the square of the speed
-  float air_resistance = AIR_RESISTANCE_FORMULA(speed);
-
-  // Total force
-  float acc = (force + kf_force + air_resistance) / BOX_MASS;
-
-  float dt = 1e-3;
-  float delta = acc * dt;
-
-  if (duration < 1e-6) {
-    return delta;
-  } else if (duration < 1e-3) {
-    dt = duration;
-    delta = acc * dt;
-  } else {
-    delta += push_box(speed_addr, force, duration - dt);
+  // Refer to the analysis of push-box.md
+  // ### Speed and thrust are in the same direction, and speed is greater than
+  // sliding friction.
+  if (F * v0 >= 0.0 && ABS(F) > KINETIC_FRICTION_FORCE) {
+    float A = ABS(F) - KINETIC_FRICTION_FORCE;
+    float t0 = duration;
+    float z = tanf((sqrtf(A * k) / m) * t0);
+    float v1 = (sqrtf(A / k) * z + v0) / (1 - sqrtf(k / A) * z * v0);
+    v1 = v1 * SIGN(v0);
+    *speed_addr = v1;
+    return v1 - v0;
   }
 
-  *speed_addr = speed + delta;
-  return delta;
+  // Refer to the analysis of push-box-md
+  // ### Speed is opposite to thrust or speed and thrust are in the same
+  // direction(but thrust is less than sliding friction).
+  float B = F * v0 >= 0.0 ? KINETIC_FRICTION_FORCE - ABS(F)
+                          : KINETIC_FRICTION_FORCE + ABS(F);
+  float t0 = (m / sqrtf(B * k)) * atanf(sqrtf(k / B) * v0);
+  if (t0 >= duration) {
+    float t1 = duration;
+    float v1 = sqrtf(B / k) * tanf((sqrtf(B * k) / m) * (-t1 + t0));
+    v1 = SIGN(v0) * v1;
+    *speed_addr = v1;
+    return v1 - v0;
+  }
+
+  // Speed pass zero point.
+  float v1 = 0.0;
+  *speed_addr = 0.0;
+  return v1 - v0 + push_box(speed_addr, force, duration - t0);
 }
