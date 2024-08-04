@@ -59,8 +59,10 @@ float push_box(float *speed_addr, float force, float duration) {
     // Refer to the analysis of
     // [push-box.md###Speed_0_and_thrust_greater_than_the_static_friction]
     float A = ABS(F) - KINETIC_FRICTION_FORCE;
-    float t = duration;
-    float v1 = sqrtf(A / k) * tanf((sqrtf(A * k) / m) * t);
+    float alpha = sqrtf(A / k);
+    float t0 = duration;
+    float z = expf(-2 * (k / m) * alpha * t0);
+    float v1 = alpha * (1 - z) / (1 + z);
     v1 = SIGN(F) * v1;
     *speed_addr = v1;
     return v1 - v0;
@@ -70,12 +72,17 @@ float push_box(float *speed_addr, float force, float duration) {
   // ### Speed and thrust are in the same direction, and speed is greater than
   // sliding friction.
   if (F * v0 >= 0.0 && ABS(F) > KINETIC_FRICTION_FORCE) {
-    // TODO: fix this error.
-    printf("Find error.\n");
     float A = ABS(F) - KINETIC_FRICTION_FORCE;
+    float alpha = sqrtf(A / k);
+    float V = alpha;
     float t0 = duration;
-    float z = tanf((sqrtf(A * k) / m) * t0);
-    float v1 = (sqrtf(A / k) * z + v0) / (1 - sqrtf(k / A) * z * v0);
+    float C2 = ABS(v0 - alpha) / (v0 + alpha);
+    float z0 = C2 * expf(-2 * (k / m) * alpha * t0);
+    float v1;
+    if (v0 > V)
+      v1 = alpha * (1 + z0) / (1 - z0);
+    else
+      v1 = alpha * (1 - z0) / (1 + z0);
     v1 = v1 * SIGN(v0);
     *speed_addr = v1;
     return v1 - v0;

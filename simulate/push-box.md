@@ -56,80 +56,81 @@ $$
 \frac{m}{A - kv^2} dv = dt
 $$
 
-2. Constant separation
+2. Search lists of integrals
 
 $$
-\frac{m}{A} \cdot \frac{1}{1 - \frac{k}{A} \cdot v^2} dv = dt
+\int \frac{1}{x^2 - \alpha^2} dx = \frac{1}{2 \alpha} \cdot \ln{\left|\frac{x- \alpha}{x + \alpha}\right|} + C
 $$
 
-3. Integrate both sides of the equation
+3. Unified form
 
 $$
-\frac{m}{A} \cdot \int \frac{1}{1 - \frac{k}{A} \cdot v^2} dv = \int dt
+- \frac{m}{k} \cdot \int \frac{1}{v^2 - \sqrt{\frac{A}{k}}^2} dv = \int dt
 $$
 
-4. The left-hand side integral uses trigonometric substitution.
+4. Substitute into the formula
 
 $$
-v = \sqrt{\frac{A}{k}}\tan{\theta}
+- \frac{m}{k} \cdot \left[ \frac{1}{2 \sqrt{\frac{A}{k}}} \cdot \ln{\left|\frac{v - \sqrt{\frac{A}{k}}}{v + \sqrt{\frac{A}{k}}}\right|} \right] = t + C
 $$
 
-$$
-dv = \sqrt{\frac{A}{k}}\sec^2{\theta} d\theta
-$$
+5. $v(0) = 0$
 
 $$
-\frac{m}{A} \cdot \int \frac{1}{1 - \tan^2{\theta}} \sqrt{\frac{A}{k}}\sec^2{\theta} d\theta = \int dt
+C = 0
 $$
 
-$$
-\sqrt{\frac{m^2}{Ak}} \int d\theta = \int dt
-$$
-
-5. Integral
+6. $v_1 = v(t_0)$
 
 $$
-\sqrt{\frac{m^2}{Ak}} \theta = t + C_1
+\alpha = \sqrt{\frac{A}{k}}
 $$
 
 $$
-\theta = \arctan{(\sqrt{\frac{k}{A}}v)}
+\left| \frac{v_1 - \alpha}{v_1 + \alpha} \right| = e^{- 2 \frac{k}{m} \alpha \cdot t_0}
+$$
+
+7. Classification discussion
+
+if $v_1 - \alpha > 0$ then
+
+$$
+v_1 > \sqrt{\frac{A}{k}}
 $$
 
 $$
-\sqrt{\frac{m^2}{Ak}} \arctan{(\sqrt{\frac{k}{A}}v)} = t + C_1
+k \cdot v_1^2 > A
+$$
+
+$k \cdot v^2$ is air resistance, A is the combined force of thrust and sliding friction.
+The speed starts to increase from 0 and will not exceed the speed at the balance point
+of thrust, friction and air resistance. So $v - \alpha < 0$
+
+$$
+\frac{\alpha - v_1}{v_1 + \alpha} = e^{- 2 \frac{k}{m} \alpha \cdot t_0}
 $$
 
 $$
-v(t) = \sqrt{\frac{A}{k}} \tan{\left(\sqrt{\frac{Ak}{m^2}}(t + C_1)\right)}
+\begin{cases}
+v_1 = \frac{\alpha \cdot (1-z)}{1 + z}
+\\
+z = e^{- 2 \frac{k}{m} \alpha \cdot t_0}
+\end{cases}
 $$
 
-6. $v(0) = 0$
-
-$$
-v(0) = \sqrt{\frac{A}{k}} \tan{\left(\sqrt{\frac{Ak}{m^2}} \cdot C_1 \right)} = 0
-$$
-
-$$
-C_1 = 0
-$$
-
-7. End
-
-$$
-v(t) = \sqrt{\frac{A}{k}} \tan{\left(\sqrt{\frac{Ak}{m^2}} \cdot t\right)}
-$$
-
-$t = \text{duration}$
+$t_0 = \text{duration}$
 Now the speed is consistent with the thrust direction.
 
-### Speed and thrust are in the same direction, and speed is greater than sliding friction.
+### Speed and thrust are in the same direction, and force is greater than sliding friction.
 
 The car will tend to a certain speed, and the direction of the speed will not change.
 
 $$
-\lim_{t \to \infty} |v| = \sqrt{\frac{F-f}{k}}
+V = \lim_{t \to \infty} |v| = \sqrt{\frac{F-f}{k}}
 $$
+
+if $v_0 > V$ then Slow down to V
+if $v_0 < V$ then Speed up to V
 
 The combined force of thrust and sliding friction $A = |F| - |f_k| > 0$
 
@@ -140,49 +141,41 @@ $$
 Refer to [ ### Speed 0 and thrust greater than the static friction ]
 
 $$
-v(t) = \sqrt{\frac{A}{k}} \tan{\left(\sqrt{\frac{Ak}{m^2}}(t + C_1)\right)}
+- \frac{m}{k} \cdot \left[ \frac{1}{2 \sqrt{\frac{A}{k}}} \cdot \ln{\left|\frac{v - \sqrt{\frac{A}{k}}}{v + \sqrt{\frac{A}{k}}}\right|} \right] = t + C_1
+$$
+
+$$
+\begin{cases}
+\left| \frac{v - \alpha}{v + \alpha} \right| = z
+\\
+\alpha = \sqrt{\frac{A}{k}}
+\\
+z = C_2 e^{- 2 \frac{k}{m} \alpha \cdot t}
+\end{cases}
 $$
 
 1. $v(0) = v_0$
 
 $$
-v(0) = \sqrt{\frac{A}{k}} \tan{\left(\sqrt{\frac{Ak}{m^2}} \cdot C_1\right)} = v_0
+C_2 = \left| \frac{v_0 - \alpha}{v_0 + \alpha} \right|
 $$
 
-2. $v(t_0) = v_1$
+2. $v_1 = v(t_0)$
 
 $$
-v_1 = v(t_0) = \sqrt{\frac{A}{k}} \tan{\left(\sqrt{\frac{Ak}{m^2}}(t_0 + C_1)\right)}
+\left| \frac{v_1 - \alpha}{v_1 + \alpha} \right| = C_2 e^{- 2 \frac{k}{m} \alpha \cdot t_0}
 $$
 
-$$
-\tan{\left( \alpha + \beta \right)} =
-\frac{\sin{\left( \alpha + \beta \right)}}{\cos{\left( \alpha + \beta \right)}} =
-\frac{\sin{\alpha} \cdot \cos{\beta} + \cos{\alpha} \cdot \sin{\beta}}
-     {\cos{\alpha} \cdot \cos{\beta} - \sin{\alpha} \cdot \sin{\beta}}
-$$
-
-Divide the numerator and denominator by $\cos{\alpha} \cdot \cos{\beta}$
+- if $v_1 - \alpha > 0$ so $v_0 > V$
 
 $$
-\tan{\left( \alpha + \beta \right)} =
-\frac{\tan{\alpha} + \tan{\beta}}{1 - \tan{\alpha} \cdot \tan{\beta}}
+v_1 = \alpha \cdot \frac{1 + C_2 z_0}{1 - C_2 z_0}
 $$
 
-$$
-v_1 = \sqrt{\frac{A}{k}} \cdot \frac{ \tan{\left(\sqrt{\frac{Ak}{m^2}} \cdot t_0 \right)} +
-                                      \tan{\left(\sqrt{\frac{Ak}{m^2}} \cdot C_1 \right)}}
-                                    { 1 - \tan{\left(\sqrt{\frac{Ak}{m^2}} \cdot t_0 \right)} \cdot
-                                          \tan{\left(\sqrt{\frac{Ak}{m^2}} \cdot C_1 \right)}}
-$$
+- if $v_1 - \alpha < 0$ so $v_0 < V$
 
 $$
-\begin{cases}
-v_1 = \frac{ \sqrt{\frac{A}{k}} \cdot z + v_0}
-           { 1 - \sqrt{\frac{k}{A}} \cdot z \cdot v_0}
-\\
-z = \tan{\left(\sqrt{\frac{Ak}{m^2}} \cdot t_0 \right)}
-\end{cases}
+v_1 = \alpha \cdot \frac{1 - C_2 z_0}{1 + C_2 z_0}
 $$
 
 The direction of the velocity is consistent with the initial direction.
@@ -271,6 +264,7 @@ t_0 = C_1 = \frac{m}{\sqrt{Bk}} \arctan{\left(\sqrt{\frac{k}{B}} \cdot v_0 \righ
 $$
 
 8. Compare duration with $t_0$ to determine whether the first speed 0 point has been passed.
+
 - If not passed, substitute duration.
 
 $$
