@@ -1,6 +1,7 @@
 #include "push-box.h"
 #include "../utils/num-limit-macro.h"
 #include <math.h>
+#include <stdio.h>
 
 const float BOX_MASS = 1.0; // kg
 
@@ -69,6 +70,8 @@ float push_box(float *speed_addr, float force, float duration) {
   // ### Speed and thrust are in the same direction, and speed is greater than
   // sliding friction.
   if (F * v0 >= 0.0 && ABS(F) > KINETIC_FRICTION_FORCE) {
+    // TODO: fix this error.
+    printf("Find error.\n");
     float A = ABS(F) - KINETIC_FRICTION_FORCE;
     float t0 = duration;
     float z = tanf((sqrtf(A * k) / m) * t0);
