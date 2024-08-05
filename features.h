@@ -61,4 +61,4 @@ struct Pid pid_new_with_integral_sliding_window(float kp, float ki, float kd,
                                                 float finite_time);
 #endif
 
-#endif // __FEATURES_H__
+#endif // !__FEATURES_H__
