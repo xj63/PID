@@ -1,12 +1,37 @@
-test: push-box
+CC = gcc
+CFLAGS = -Wall -Wextra -lm
+SRC = ../push-box.c
+HEADERS = ../push-box.h
+TESTS = $(wildcard test-*.c)
+TARGETS = $(TESTS:.c=.out)
 
-push-box: ../push-box.c ../push-box.h ./test-push-box.c
-	gcc test-push-box.c ../push-box.c -lm
-	./a.out
+test: test-all
 
-push-box-alternative: ./test-push-box.c ./push-box.alternative.c
-	gcc test-push-box.c push-box.alternative.c
-	./a.out
+test-all: $(TARGETS)
+	@for target in $(TARGETS); do \
+		printf "\e[32m- Running:\e[0m $${target%.out}\n"; \
+		./$$target; \
+		echo; \
+	done
+
+test-one: $(TARGETS)
+	@if [ -z "$(TEST_NAME)" ]; then \
+		echo "Usage: make test-one TEST_NAME=<test-name>"; \
+	else \
+		executable=$${TEST_NAME}.out; \
+		if [ -f "$$executable" ]; then \
+			printf "\e[32m- Running:\e[0m $${executable%.out}\n"; \
+			./$$executable; \
+			echo; \
+		else \
+			echo "Executable $$executable does not exist."; \
+		fi \
+	fi
+
+$(TARGETS): %.out: %.c $(SRC) $(HEADERS)
+	$(CC) $(CFLAGS) $< $(SRC) -o $@
 
 clean:
-	rm a.out
+	rm -f $(TARGETS)
+
+.PHONY: test test-all test-one clean
