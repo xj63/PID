@@ -4,6 +4,12 @@
 
 <h1 align="center">PID</h1>
 
+![GitHub License](https://img.shields.io/github/license/xj63/PID?style=flat-square&label=%E2%9A%96%20License)
+![GitHub Repo Stars](https://img.shields.io/github/stars/xj63/PID?style=flat-square&label=%E2%9C%A8%20Stars)
+![GitHub Language](https://img.shields.io/badge/Language-C-yellow?style=flat-square&logo=c)
+![GitHub Last Commit](https://img.shields.io/github/last-commit/xj63/PID?style=flat-square&label=%F0%9F%94%A5%20Last%20commit&color=orange)
+![GitHub Tag](https://img.shields.io/github/v/tag/xj63/PID?style=flat-square&label=%F0%9F%8F%B7%EF%B8%8FTag&color=purple)
+
 使用C语言实现的功能丰富的PID控制器。
 
 ## Features
