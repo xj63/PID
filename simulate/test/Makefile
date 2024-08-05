@@ -1,7 +1,7 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -lm
-SRC = ../push-box.c
-HEADERS = ../push-box.h
+SRC = ../push-box.c ../../pid.c ../../features/default.c
+HEADERS = ../push-box.h ../../pid.h ../../features.h
 TESTS = $(wildcard test-*.c)
 TARGETS = $(TESTS:.c=.out)
 
