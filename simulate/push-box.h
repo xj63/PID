@@ -18,7 +18,8 @@
 /// # Example
 /// ```c
 /// #include "../pid.h"
-/// #include "stdio.h"
+/// #include "push-box.h"
+/// #include <stdio.h>
 ///
 /// int main() {
 ///   struct Pid pid = pid_new(1.0, 0, 0);
