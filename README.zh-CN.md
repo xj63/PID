@@ -2,6 +2,10 @@
   <a href="./README.md">English</a> / 简体中文
 </p>
 
+<div align="center">
+  <img src="https://xj63.github.io/PID-docs/pid-logo.svg" width="40%">
+</div>
+
 <h1 align="center">PID</h1>
 
 <div align="center">
