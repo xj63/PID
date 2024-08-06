@@ -19,9 +19,17 @@
 
 </div>
 
+## 👋 简介
+
 使用C语言实现的功能丰富的PID控制器。
 
-## Features
+- 统一的调用接口，无需关注具体的 PID 实现
+- 静态内存分配，无任何依赖，可用于单片机
+- 易于扩展，支持同时运行多种 PID 控制器
+- 包含分析、测试、模拟工具(TODO)
+- 拥有[文档](https://xj63.github.io/PID-docs)和[示例](./example)
+
+## 🚀 功能
 
 - [x] default （默认）
 - [x] integral decay （积分衰减）
