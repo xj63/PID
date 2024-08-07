@@ -59,6 +59,18 @@ int main() {
 }
 ```
 
+## 📦 Add to project
+
+It is recommended to download pid directly from [GitHub Release](https://github.com/xj63/PID/releases)
+(remove the `example` `test` `simulate` folders) and unzip it to the project directory,
+add the code files under `pid` to the project and you can use it.
+
+You can also use `git clone` to the project directory.
+
+```sh
+$ git clone https://github.com/xj63/PID -o pid  # clone to local
+```
+
 ## Contributing
 
 Welcome contributions to add new features and improve this PID controller implementation!

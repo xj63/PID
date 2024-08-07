@@ -59,6 +59,18 @@ int main() {
 }
 ```
 
+## 📦 添加到项目
+
+推荐直接从 [GitHub Release](https://github.com/xj63/PID/releases) 下载 pid
+(移除了`example` `test` `simulate` 文件夹) 并解压到项目目录下，
+将 `pid` 下的代码文件添加到项目中就可以使用了。
+
+也可以使用 `git clone` 到项目目录下。
+
+```sh
+$ git clone https://github.com/xj63/PID -o pid  # clone to local
+```
+
 ## Contributing
 
 欢迎贡献以添加新功能并改进此 PID 控制器的实现！
