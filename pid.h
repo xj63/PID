@@ -42,6 +42,7 @@ struct Pid pid_new(float kp, float ki, float kd);
 ///   will appear
 ///
 /// # Example
+///
 /// ```c
 /// void unknown_control(float thrust);
 /// float unknown_sensor();
