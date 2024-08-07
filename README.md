@@ -22,13 +22,13 @@
 
 ## 👋 Introduction
 
-A feature-rich PID controller implementation in C.
+A collection of PID implementations.
 
 - Unified call interface, no need to worry about specific PID implementations
 - Static memory allocation, no dependencies, suitable for microcontrollers
 - Easy to extend, supports running multiple PID controllers simultaneously
 - Includes analysis, testing, and simulation tools (TODO)
-- Comes with [documentation](https://xj63.github.io/PID-docs) and [examples](./example)
+- Comes with [documentation](https://xj63.github.io/PID-docs) and [example](./example)
 
 ## 🚀 Features
 
