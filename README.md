@@ -19,7 +19,6 @@
 
 </div>
 
-
 ## 👋 Introduction
 
 A collection of PID implementations.
@@ -28,7 +27,7 @@ A collection of PID implementations.
 - Static memory allocation, no dependencies, suitable for microcontrollers
 - Easy to extend, supports running multiple PID controllers simultaneously
 - Includes analysis, testing, and simulation tools (TODO)
-- Comes with [documentation](https://xj63.github.io/PID-docs) and [example](./example)
+- Comes with [documentation](https://xj63.github.io/PID-docs) and [examples](./examples)
 
 ## 🚀 Features
 
@@ -37,6 +36,28 @@ A collection of PID implementations.
 - [x] integral clamp
 - [x] integral separation
 - [x] integral sliding window
+
+## 📖 Example
+
+see more in [examples](./examples)
+
+```c
+#include "pid/pid.h"
+#include <stdbool.h>
+
+void unknown_control(float thrust);
+float unknown_sensor();
+
+int main() {
+  struct Pid pid = pid_new(1, 0, 0);
+  float target = 0;
+  while (true) {
+    float actual = unknown_sensor();
+    float thrust = pid_update(&pid, target, actual, 0.1);
+    unknown_control(thrust);
+  }
+}
+```
 
 ## Contributing
 

@@ -27,7 +27,7 @@
 - 静态内存分配，无任何依赖，可用于单片机
 - 易于扩展，支持同时运行多种 PID 控制器
 - 包含分析、测试、模拟工具(TODO)
-- 拥有[文档](https://xj63.github.io/PID-docs)和[示例](./example)
+- 拥有[文档](https://xj63.github.io/PID-docs)和[示例](./examples)
 
 ## 🚀 功能
 
@@ -36,6 +36,28 @@
 - [x] integral clamp （积分限幅）
 - [x] integral separation （积分分离）
 - [x] integral sliding window （积分滑动窗口，积分有限时间）
+
+## 📖 Example
+
+see more in [examples](./examples)
+
+```c
+#include "pid/pid.h"
+#include <stdbool.h>
+
+void unknown_control(float thrust);
+float unknown_sensor();
+
+int main() {
+  struct Pid pid = pid_new(1, 0, 0);
+  float target = 0;
+  while (true) {
+    float actual = unknown_sensor();
+    float thrust = pid_update(&pid, target, actual, 0.1);
+    unknown_control(thrust);
+  }
+}
+```
 
 ## Contributing
 
