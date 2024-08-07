@@ -10,9 +10,7 @@ static float direction = 0.0;
 /// -90 <   > 90
 ///       v 180
 /// return (-180, 180] left - right +
-float get_direction() {
-  return direction;
-}
+float get_direction() { return direction; }
 
 /// set motor thrust
 void motor_thrust(float left, float right) {
@@ -20,10 +18,19 @@ void motor_thrust(float left, float right) {
   float average = (left + right) / 2.0;
   // then turn = left - average = 10 - 2 = 8
   float turn = left - average;
-  // turn right 8 degree
+  // turn right 8°
   direction += turn;
 }
 
+/// turn angle with PID
+///
+/// turn: left - right +
+///
+/// # Example
+/// ```c
+/// turn_angle(90.0); // Turn right 90°
+/// turn_angle(-45.0); // Turn left 45°
+/// ```
 void turn_angle(float turn) {
   motor_thrust(0, 0);
   struct Pid pid = pid_new(1, 0, 0);
@@ -52,7 +59,11 @@ void turn_angle(float turn) {
   }
 }
 
-int main(int argc, char *argv[]) {
-  float angle = 90.0;
+#include "stdio.h"
+int main() {
+  float origin = get_direction();
+  float angle = 90;
   turn_angle(angle);
+  float final = get_direction();
+  printf("origin: %f°, turn %f°, final: %f°\n", origin, angle, final);
 }
