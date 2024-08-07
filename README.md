@@ -15,7 +15,7 @@
 ![Repo Stars](https://img.shields.io/github/stars/xj63/PID?style=flat-square&label=%E2%9C%A8%20Stars)
 ![Language](https://img.shields.io/badge/Language-C-yellow?style=flat-square&logo=c)
 [![Last Commit](https://img.shields.io/github/last-commit/xj63/PID?style=flat-square&label=%F0%9F%94%A5%20Last%20commit&color=orange)](https://github.com/xj63/PID/activity)
-[![Tag](https://img.shields.io/github/v/tag/xj63/PID?style=flat-square&label=%F0%9F%8F%B7%EF%B8%8FTag&color=purple)](https://github.com/xj63/PID/tags)
+[![GitHub Release](https://img.shields.io/github/v/release/xj63/PID?include_prereleases&style=flat-square&label=%F0%9F%93%A6%20Release&color=purple)](https://github.com/xj63/PID/releases)
 
 </div>
 
