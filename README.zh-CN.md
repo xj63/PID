@@ -39,7 +39,7 @@
 
 ## 📖 Example
 
-更多实例在 [examples](./examples)
+更多示例在 [examples](./examples)
 
 ```c
 #include "pid/pid.h"
