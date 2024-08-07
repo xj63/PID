@@ -66,6 +66,9 @@ struct Pid pid_new_with_integral_decay(float kp, float ki, float kd,
 ///
 /// integral += ((error + previous) / 2) * dt
 /// integral = CLAMP(integral, min, max)
+///
+/// # Warning
+/// - min <= max
 struct Pid pid_new_with_integral_clamp(float kp, float ki, float kd,
                                        float integral_clamp_bound_min,
                                        float integral_clamp_bound_max);
@@ -76,6 +79,9 @@ struct Pid pid_new_with_integral_clamp(float kp, float ki, float kd,
 ///
 /// if (lower < error && error < upper)
 ///   integral += ((error + previous) / 2) * dt
+///
+/// # Warning
+/// - lower < upper
 struct Pid pid_new_with_integral_separation(
     float kp, float ki, float kd,
     float integral_separation_error_threshold_lower,
