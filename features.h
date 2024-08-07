@@ -46,20 +46,36 @@ union PidFeaturesOption {
 #endif
 };
 
+/// Create a default PID controller
+///
+/// derivative = (previous - error) / dt
+/// integral += ((error + previous) / 2) * dt
 struct Pid pid_new_with_default(float kp, float ki, float kd);
 
 #ifdef PID_FEATURE_INTEGRAL_DECAY
+/// Create a PID controller with integral decay
+///
+/// integral *= integral_decay_factor
+/// integral += ((error + previous) / 2) * dt
 struct Pid pid_new_with_integral_decay(float kp, float ki, float kd,
                                        float integral_decay_factor);
 #endif
 
 #ifdef PID_FEATURE_INTEGRAL_CLAMP
+/// Create a PID controller with integral clamp
+///
+/// integral += ((error + previous) / 2) * dt
+/// integral = CLAMP(integral, min, max)
 struct Pid pid_new_with_integral_clamp(float kp, float ki, float kd,
                                        float integral_clamp_bound_min,
                                        float integral_clamp_bound_max);
 #endif
 
 #ifdef PID_FEATURE_INTEGRAL_SEPARATION
+/// Create a PID controller with integral separation
+///
+/// if (lower < error && error < upper)
+///   integral += ((error + previous) / 2) * dt
 struct Pid pid_new_with_integral_separation(
     float kp, float ki, float kd,
     float integral_separation_error_threshold_lower,
@@ -67,6 +83,9 @@ struct Pid pid_new_with_integral_separation(
 #endif
 
 #ifdef PID_FEATURE_INTEGRAL_SLIDING_WINDOW
+/// Create a PID controller with integral sliding window
+///
+/// integral = /int_{t-finite_time}^t error dt
 struct Pid pid_new_with_integral_sliding_window(float kp, float ki, float kd,
                                                 float finite_time);
 #endif
