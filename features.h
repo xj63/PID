@@ -6,6 +6,14 @@
 #define PID_FEATURE_INTEGRAL_SEPARATION
 // #define PID_FEATURE_INTEGRAL_SLIDING_WINDOW
 
+#if defined(PID_FEATURE_INTEGRAL_CLAMP) ||                                     \
+    defined(PID_FEATURE_INTEGRAL_SEPARATION)
+struct BoundRange {
+  float min;
+  float max;
+};
+#endif // PID_FEATURE_INTEGRAL_CLAMP || PID_FEATURE_INTEGRAL_SEPARATION
+
 #ifdef PID_FEATURE_INTEGRAL_SLIDING_WINDOW
 // default sliding window size
 #ifndef INTEGRAL_SLIDING_WINDOW_SIZE
@@ -26,11 +34,11 @@ union PidFeaturesOption {
 #endif
 
 #ifdef PID_FEATURE_INTEGRAL_CLAMP
-  float integral_clamp_bound;
+  struct BoundRange integral_clamp_bound;
 #endif
 
 #ifdef PID_FEATURE_INTEGRAL_SEPARATION
-  float integral_separation_error_threshold;
+  struct BoundRange integral_separation_error_threshold;
 #endif
 
 #ifdef PID_FEATURE_INTEGRAL_SLIDING_WINDOW
@@ -47,13 +55,15 @@ struct Pid pid_new_with_integral_decay(float kp, float ki, float kd,
 
 #ifdef PID_FEATURE_INTEGRAL_CLAMP
 struct Pid pid_new_with_integral_clamp(float kp, float ki, float kd,
-                                       float integral_clamp_bound);
+                                       float integral_clamp_bound_min,
+                                       float integral_clamp_bound_max);
 #endif
 
 #ifdef PID_FEATURE_INTEGRAL_SEPARATION
-struct Pid
-pid_new_with_integral_separation(float kp, float ki, float kd,
-                                 float integral_separation_error_threshold);
+struct Pid pid_new_with_integral_separation(
+    float kp, float ki, float kd,
+    float integral_separation_error_threshold_lower,
+    float integral_separation_error_threshold_upper);
 #endif
 
 #ifdef PID_FEATURE_INTEGRAL_SLIDING_WINDOW

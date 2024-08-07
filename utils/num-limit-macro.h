@@ -156,4 +156,24 @@
 /// ```
 #define CLAMP(x, range) LIMIT(x, -(range), range)
 
+/// Check if `x` is in the interval [min, max]
+///
+/// Return `true` if `min <= x <= max`
+///     otherwise return `false`.
+///
+/// Equivalent expression `min <= x && x <= max`.
+///
+/// # Warning
+/// `min` must be less than `max`.
+///
+/// # Example
+///
+/// ```c
+/// int x = 3, min = 2, max = 4;
+/// assert(IN_RANGE(x, min, max) == true);
+///
+/// assert(IN_RANGE(1, 2, 4) == false);
+/// ```
+#define IN_RANGE(x, min, max) ((min) <= (x) && (x) <= (max))
+
 #endif // !__NUM_LIMIT_MACRO_H__

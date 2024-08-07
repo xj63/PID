@@ -11,8 +11,8 @@ float pid_update_with_integral_clamp(struct Pid *pid, float error, float dt) {
   pid->integral += average * dt;
 
   // clamp integral
-  float clamp = pid->option.integral_clamp_bound;
-  pid->integral = CLAMP(pid->integral, clamp);
+  struct BoundRange clamp = pid->option.integral_clamp_bound;
+  pid->integral = LIMIT(pid->integral, clamp.min, clamp.max);
 
   pid->previous = error;
 
@@ -22,9 +22,17 @@ float pid_update_with_integral_clamp(struct Pid *pid, float error, float dt) {
 PID_UPDATE_GENERATE_IS_FIRST(integral_clamp)
 
 struct Pid pid_new_with_integral_clamp(float kp, float ki, float kd,
-                                       float integral_clamp_bound) {
+                                       float integral_clamp_bound_min,
+                                       float integral_clamp_bound_max) {
   struct Pid pid = pid_new(kp, ki, kd);
+
+  struct BoundRange integral_clamp_bound = {
+      .min = integral_clamp_bound_min,
+      .max = integral_clamp_bound_max,
+  };
   pid.option.integral_clamp_bound = integral_clamp_bound;
+
   pid.update = pid_update_with_integral_clamp_is_first;
+
   return pid;
 }

@@ -73,5 +73,6 @@ struct Pid pid_new_with_integral_sliding_window(float kp, float ki, float kd,
   }
 
   pid.update = pid_update_with_integral_sliding_window_is_first;
+
   return pid;
 }
