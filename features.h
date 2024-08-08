@@ -63,6 +63,9 @@ struct Pid pid_new_with_default(float kp, float ki, float kd);
 /// - Ts = sampling time
 /// - Ts must be greater than 0
 /// - Ts unit is seconds (s)
+///
+/// # Warning
+/// - pid_update dt will ignore
 struct Pid pid_new_with_fixed_sampling(float Kp, float Ki, float Kd, float Ts);
 #endif // PID_FEATURE_FIXED_SAMPLING
 
