@@ -1,6 +1,8 @@
 #ifndef __FEATURES_H__
 #define __FEATURES_H__
 
+#define PID_FEATURE_FIXED_SAMPLING
+
 #define PID_FEATURE_INTEGRAL_DECAY
 #define PID_FEATURE_INTEGRAL_CLAMP
 #define PID_FEATURE_INTEGRAL_SEPARATION
@@ -51,6 +53,21 @@ union PidFeaturesOption {
 /// derivative = (previous - error) / dt
 /// integral += ((error + previous) / 2) * dt
 struct Pid pid_new_with_default(float kp, float ki, float kd);
+
+#ifdef PID_FEATURE_FIXED_SAMPLING
+/// Create a PID controller with fixed sampling
+///
+/// ki = K_i * T_s
+/// kd = K_d / T_s
+///
+/// - Ts = sampling time
+/// - Ts must be greater than 0
+/// - Ts unit is seconds (s)
+///
+/// # Warning
+/// - pid_update dt will ignore
+struct Pid pid_new_with_fixed_sampling(float Kp, float Ki, float Kd, float Ts);
+#endif // PID_FEATURE_FIXED_SAMPLING
 
 #ifdef PID_FEATURE_INTEGRAL_DECAY
 /// Create a PID controller with integral decay
