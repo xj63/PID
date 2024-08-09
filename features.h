@@ -28,24 +28,24 @@ struct IntegralSlidingWindow {
   unsigned offset;
   float finite_time;
 };
-#endif
+#endif // PID_FEATURE_INTEGRAL_SLIDING_WINDOW
 
 union PidFeaturesOption {
 #ifdef PID_FEATURE_INTEGRAL_DECAY
   float integral_decay_factor;
-#endif
+#endif // PID_FEATURE_INTEGRAL_DECAY
 
 #ifdef PID_FEATURE_INTEGRAL_CLAMP
   struct BoundRange integral_clamp_bound;
-#endif
+#endif // PID_FEATURE_INTEGRAL_CLAMP
 
 #ifdef PID_FEATURE_INTEGRAL_SEPARATION
   struct BoundRange integral_separation_error_threshold;
-#endif
+#endif // PID_FEATURE_INTEGRAL_SEPARATION
 
 #ifdef PID_FEATURE_INTEGRAL_SLIDING_WINDOW
   struct IntegralSlidingWindow integral_sliding_window;
-#endif
+#endif // PID_FEATURE_INTEGRAL_SLIDING_WINDOW
 };
 
 /// Create a default PID controller
@@ -76,7 +76,7 @@ struct Pid pid_new_with_fixed_sampling(float Kp, float Ki, float Kd, float Ts);
 /// integral += ((error + previous) / 2) * dt
 struct Pid pid_new_with_integral_decay(float kp, float ki, float kd,
                                        float integral_decay_factor);
-#endif
+#endif // PID_FEATURE_INTEGRAL_DECAY
 
 #ifdef PID_FEATURE_INTEGRAL_CLAMP
 /// Create a PID controller with integral clamp
@@ -89,7 +89,7 @@ struct Pid pid_new_with_integral_decay(float kp, float ki, float kd,
 struct Pid pid_new_with_integral_clamp(float kp, float ki, float kd,
                                        float integral_clamp_bound_min,
                                        float integral_clamp_bound_max);
-#endif
+#endif // PID_FEATURE_INTEGRAL_CLAMP
 
 #ifdef PID_FEATURE_INTEGRAL_SEPARATION
 /// Create a PID controller with integral separation
@@ -103,7 +103,7 @@ struct Pid pid_new_with_integral_separation(
     float kp, float ki, float kd,
     float integral_separation_error_threshold_lower,
     float integral_separation_error_threshold_upper);
-#endif
+#endif // PID_FEATURE_INTEGRAL_SEPARATION
 
 #ifdef PID_FEATURE_INTEGRAL_SLIDING_WINDOW
 /// Create a PID controller with integral sliding window
@@ -111,6 +111,6 @@ struct Pid pid_new_with_integral_separation(
 /// integral = /int_{t-finite_time}^t error dt
 struct Pid pid_new_with_integral_sliding_window(float kp, float ki, float kd,
                                                 float finite_time);
-#endif
+#endif // PID_FEATURE_INTEGRAL_SLIDING_WINDOW
 
 #endif // !__FEATURES_H__
